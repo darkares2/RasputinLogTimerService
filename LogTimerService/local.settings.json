@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "rasputinstorageaccount_STORAGE": "DefaultEndpointsProtocol=https;AccountName=rasputinstorageaccount;AccountKey=ye972sio9auDAOLbwXD2bZT8wDaVh73xHLWm/D/TdFSgSyZw7c6Z4b86Q2P6Wy8A0JE11uWzjtQf+AStR5C7FA==;EndpointSuffix=core.windows.net",
+    "rasputinServicebus": "Endpoint=sb://rasputinsb.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=JCH8n9OXDJ5Xz5mSPGFaiFb1IGZvUL6Ws+ASbMAI1gY=",
+    "sqldb_connection":"Server=tcp:rasputinsql.database.windows.net,1433;Initial Catalog=RasputinSQL;Persist Security Info=False;User ID=rasputin;Password=rogPak-guzjuv-0nortu;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  }
+}
