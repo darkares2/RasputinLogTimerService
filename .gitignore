@@ -88,7 +88,7 @@ env.yml
 
 # Temporary files
 *~
-api/local.settings.json
+*/local.settings.json
 # Azurite Files 
 __azurite_db_blob_extent__.json
 __azurite_db_blob__.json
