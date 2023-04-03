@@ -23,7 +23,7 @@ namespace Rasputin.LogTimerService
         private async Task InsertLogTimerAsync(LogTimer logTimer, ILogger log)
         {
             var str = Environment.GetEnvironmentVariable("sqldb_connection");
-            string query = "INSERT INTO LogTimers (Id, Queue, SentTimestamp, ReceiveTimestamp) VALUES (@Id, @Queue,@SentTimestamp,@ReceiveTimestamp)";
+            string query = "INSERT INTO LogTimer (Id, Queue, SentTimestamp, ReceiveTimestamp) VALUES (@Id, @Queue,@SentTimestamp,@ReceiveTimestamp)";
             using (SqlConnection connection = new SqlConnection(str))
             {
                 connection.Open();
