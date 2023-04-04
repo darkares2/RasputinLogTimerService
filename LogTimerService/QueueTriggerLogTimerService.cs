@@ -13,11 +13,15 @@ namespace Rasputin.LogTimerService
         public async Task RunAsync([ServiceBusTrigger("ms-logtimer", Connection = "rasputinServicebus")]string myQueueItem, ILogger log)
         {
             log.LogInformation($"C# Queue trigger function processed: {myQueueItem}");
-            var logTimer = JsonSerializer.Deserialize<LogTimer>(myQueueItem, new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            });
-            await InsertLogTimerAsync(logTimer, log);
+            try {
+                var logTimer = JsonSerializer.Deserialize<LogTimer>(myQueueItem, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
+                await InsertLogTimerAsync(logTimer, log);
+            } catch(Exception ex) {
+                log.LogError($"Queue insertion failed", ex);
+            }
         }
 
         private async Task InsertLogTimerAsync(LogTimer logTimer, ILogger log)
@@ -34,6 +38,7 @@ namespace Rasputin.LogTimerService
                     command.Parameters.AddWithValue("@SentTimestamp", logTimer.SentTimestamp);
                     command.Parameters.AddWithValue("@ReceiveTimestamp", logTimer.ReceiveTimestamp);
                     await command.ExecuteNonQueryAsync();
+                    log.LogDebug("Inserted into LogTimer");
                 }
             }
         }
