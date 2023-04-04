@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 'Checkout GitHub action'
-      uses: actions/checkout@main
+      uses: actions/checkout@v3
 
     - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v1.5.0
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
     - name: Install dependencies
@@ -24,7 +24,7 @@ jobs:
     - name: Test with dotnet
       run: dotnet test --logger trx --results-directory "TestResults"
     - name: Upload dotnet test results
-      uses: actions/upload-artifact@main
+      uses: actions/upload-artifact@v3
       with:
         name: dotnet-results
         path: TestResults
@@ -35,7 +35,7 @@ jobs:
         dotnet build --configuration Release --output ./output
         popd
     - name: 'Run Azure Functions action'
-      uses: Azure/functions-action@main
+      uses: Azure/functions-action@v1.4.8
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
         package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
