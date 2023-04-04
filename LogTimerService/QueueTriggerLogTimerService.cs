@@ -21,6 +21,7 @@ namespace Rasputin.LogTimerService
                 await InsertLogTimerAsync(logTimer, log);
             } catch(Exception ex) {
                 log.LogError($"Queue insertion failed", ex);
+                throw;
             }
         }
 
