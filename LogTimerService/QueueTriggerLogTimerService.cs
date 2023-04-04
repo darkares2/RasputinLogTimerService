@@ -37,8 +37,8 @@ namespace Rasputin.LogTimerService
                     command.Parameters.AddWithValue("@Queue", logTimer.Queue);
                     command.Parameters.AddWithValue("@SentTimestamp", logTimer.SentTimestamp);
                     command.Parameters.AddWithValue("@ReceiveTimestamp", logTimer.ReceiveTimestamp);
-                    await command.ExecuteNonQueryAsync();
-                    log.LogDebug("Inserted into LogTimer");
+                    var countInserted = await command.ExecuteNonQueryAsync();
+                    log.LogDebug($"Inserted into LogTimer[{countInserted}]");
                 }
             }
         }
